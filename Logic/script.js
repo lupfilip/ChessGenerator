@@ -560,7 +560,7 @@ window.onload = function() { //When website loads
         if(document.getElementById("manual").checked) {
             var place = Array();
             for(var i = 0; i < 12; i++) {
-                var input = document.querySelectorAll("input[type='number']")[i];
+                var input = document.getElementsByClassName("number")[i];
                 if(isNaN(parseInt(input.value))) place.push(0);
                 if(parseInt(input.value) > parseInt(input.max)) place.push(parseInt(input.max));
                 else place.push(parseInt(input.value));
@@ -571,6 +571,27 @@ window.onload = function() { //When website loads
         }
         else {
             document.getElementById("fen").innerHTML = createPosition();
+        }
+    }
+
+    var pieces = document.getElementsByClassName("number");
+    var limit = [8, 10, 10, 10, 9, 1];
+    
+    for(var i = 0; i < pieces.length; i++) {
+        pieces[i].id = i;
+        pieces[i].onclick = function() {
+            var valueP = 0;
+            for(var j = 1; j < 5; j++) {
+                if(parseInt(this.id) % 6 == j) continue;
+                if(parseInt(pieces[Math.floor(parseInt(this.id) / 6) * 6 + j].value) + 8 - limit[j] > 0)
+                    valueP += parseInt(pieces[Math.floor(parseInt(this.id) / 6) * 6 + j].value) + 8 - limit[j];
+            }
+            
+            if(parseInt(this.value) + valueP * (parseInt(this.id) % 6 != 5) < limit[parseInt(this.id) % 6] - 
+                parseInt(pieces[Math.floor(parseInt(this.id) / 6) * 6].value) * (parseInt(this.id) % 6 != 0 && parseInt(this.id) % 6 != 5))
+                this.value = parseInt(this.value) + 1;
+            else 
+                this.value = 0;
         }
     }
 

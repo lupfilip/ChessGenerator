@@ -127,6 +127,7 @@ ul {
     gap: 32px;
     flex-wrap: wrap;
     margin-top: 32px;
+    padding: 0;
 }
 
 li {
@@ -139,7 +140,10 @@ li {
 ul input {
     font-size: 32px;
     text-align: center;
-    padding-left: 16px;
+    width: 128px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
 }
 
 ul img {
@@ -209,6 +213,8 @@ ul img {
 
     ul input {
         font-size: 64px;
+        width: 256px;
+        height: 128px;
     }
     
     ul img {
