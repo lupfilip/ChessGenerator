@@ -18,9 +18,9 @@ function placePawn(color) { //Place a pawn of selected color
     var placingIndex;
 
     do { //Choose index
-        placingIndex = Math.floor(Math.random() * chessboard.length) % 24 + 8 + 24 * !color;
+        placingIndex = Math.floor(Math.random() * chessboard.length) % 48 + 8;
 
-        for(var i = 0; i <= Math.sqrt(chessboard.length); i++) {
+        /*for(var i = 0; i <= Math.sqrt(chessboard.length); i++) {
             if(i == Math.sqrt(chessboard.length)) {i = -1;}
             else if(!chessboard.some(data => data.piece == 1 + 6 * color && data.x == i)) {
                 if(Math.random() * chessboard.length < chessboard.length / 2) {continue;}
@@ -30,7 +30,7 @@ function placePawn(color) { //Place a pawn of selected color
                     break;
                 }
             }
-        }
+        }*/
     } while(chessboard.some(data => data.index === chessboard[placingIndex].index && data.piece !== 0)); //If index is occupied
 
     chessboard[placingIndex].piece = 1 + (pieceCount.length / 2) * color; //Place pawn
@@ -53,7 +53,7 @@ function placeKnight(color) { //Place a pawn of selected color
     var placingIndex;
 
     do { //Choose index
-        placingIndex = Math.floor(Math.random() * chessboard.length) % 32 + 32 * !color;
+        placingIndex = Math.floor(Math.random() * chessboard.length) % 64;
     } while(chessboard.some(data => data.index === chessboard[placingIndex].index && data.piece !== 0)); //If index is occupied
 
     chessboard[placingIndex].piece = 2 + (pieceCount.length / 2) * color; //Place knight
@@ -70,11 +70,12 @@ function placeBishop(color) { //Place a pawn of selected color
     do { //Choose index
 
         if(bishopCount > 1) {
-            placingIndex = Math.floor(Math.random() * chessboard.length) % 32 + 32 * !color;       }
+            placingIndex = Math.floor(Math.random() * chessboard.length) % 64;       
+        }
         else {
 
             do {
-                placingIndex = Math.floor(Math.random() * chessboard.length) % 32 + 32 * !color;
+                placingIndex = Math.floor(Math.random() * chessboard.length) % 64;
             } while((chessboard[placingIndex].x + chessboard[placingIndex].y) % 2 !== bishopCount); //Repeat until match
         }
 
@@ -90,7 +91,7 @@ function placeRook(color) { //Place a pawn of selected color
     var placingIndex;
 
     do { //Choose index
-            placingIndex = Math.floor(Math.random() * chessboard.length) % 32 + 32 * !color; //Choose index on board
+            placingIndex = Math.floor(Math.random() * chessboard.length) % 64; //Choose index on board
 
     } while(chessboard.some(data => data.index === chessboard[placingIndex].index && data.piece !== 0)); //If index is occupied
 
@@ -104,7 +105,7 @@ function placeQueen(color) { //Place a pawn of selected color
     var placingIndex;
 
     do { //Choose index
-            placingIndex = Math.floor(Math.random() * chessboard.length) % 32 + 32 * !color; //Choose index on board
+            placingIndex = Math.floor(Math.random() * chessboard.length) % 64; //Choose index on board
 
     } while(chessboard.some(data => data.index === chessboard[placingIndex].index && data.piece !== 0)); //If index is occupied
 
@@ -118,7 +119,7 @@ function placeKing(color) { //Place a pawn of selected color
     var placingIndex;
 
     do { //Choose index
-            placingIndex = Math.floor(Math.random() * chessboard.length) % 32 + 32 * !color; //Choose index on board
+            placingIndex = Math.floor(Math.random() * chessboard.length) % 64; //Choose index on board
 
     } while(chessboard.some(data => data.index === chessboard[placingIndex].index && data.piece !== 0)); //If index is occupied
 
